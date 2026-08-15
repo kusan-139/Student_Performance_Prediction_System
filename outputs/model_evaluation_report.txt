@@ -1,0 +1,22 @@
+Model Evaluation Report (Regression)
+====================================
+
+--- Random Forest ---
+RMSE: 5.84
+MAE:  4.46
+R2:   0.59
+Adj R2: 0.58
+
+--- XGBoost ---
+RMSE: 6.52
+MAE:  4.94
+R2:   0.49
+Adj R2: 0.48
+
+--- Linear Regression ---
+RMSE: 5.20
+MAE:  3.93
+R2:   0.68
+Adj R2: 0.67
+
+Best Model Selected: Linear Regression

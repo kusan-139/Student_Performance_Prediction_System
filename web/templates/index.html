@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body data-theme="glassmorphism">
+
+    <header>
+        <div class="header-container">
+            <h1>Student Performance Dashboard</h1>
+            <div class="theme-switcher">
+                <label for="theme">Theme:</label>
+                <select id="theme">
+                    <option value="glassmorphism">Glassmorphism (Blue-Pink)</option>
+                    <option value="beige">Beige Editorial</option>
+                    <option value="cyberpunk">Cyberpunk Dark</option>
+                    <option value="neobrutalism">Neo-Brutalism</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <div class="tabs-container">
+            <button class="tab-btn active" data-target="single-section">Single Prediction</button>
+            <button class="tab-btn" data-target="batch-section">Bulk CSV Upload</button>
+        </div>
+
+        <div class="card content-card">
+            <!-- Manual Input Section -->
+            <section id="single-section" class="tab-pane active">
+                <h2>Single Prediction</h2>
+                <p>Predict final grade for an individual student.</p>
+                <button id="btn-random-student" class="btn btn-secondary">Load Random Student</button>
+                
+                <form id="single-predict-form">
+
+                    <div class="form-group">
+                        <label>Parental Support:</label>
+                        <select name="ParentalSupport" required>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Attendance Rate (%):</label>
+                        <input type="number" name="AttendanceRate" min="0" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Study Hours / Week:</label>
+                        <input type="number" name="StudyHoursPerWeek" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Previous Grade:</label>
+                        <input type="number" name="PreviousGrade" min="0" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Extracurricular Activities:</label>
+                        <input type="number" name="ExtracurricularActivities" min="0" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Predict Grade</button>
+                </form>
+
+                <div id="single-result" class="result-box hidden">
+                    <h3>Predicted Grade: <span id="pred-score">-</span></h3>
+                </div>
+            </section>
+
+            <!-- Batch Processing Section -->
+            <section id="batch-section" class="tab-pane">
+                <h2>Bulk CSV Upload</h2>
+                <p>Upload a CSV to predict grades for multiple students.</p>
+                
+                <form id="batch-form" enctype="multipart/form-data">
+                    <input type="file" id="csv-file" name="file" accept=".csv" required>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Upload & Predict Batch</button>
+                </form>
+
+                <div id="batch-result" class="hidden">
+                    <div class="batch-header">
+                        <h3>Batch Results</h3>
+                        <button id="btn-export" class="btn btn-secondary">Export to CSV</button>
+                    </div>
+                    <div class="table-container">
+                        <table id="results-table">
+                            <thead>
+                            <tr id="table-header-row">
+                                <!-- Headers filled dynamically via JS -->
+                            </tr>
+                        </thead>
+                            <tbody>
+                                <!-- Filled dynamically via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>Built with ❤️ by <b>Kusan Chakraborty</b> | <a href="https://github.com/kusan-139" target="_blank">@kusan-139</a></p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
